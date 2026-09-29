@@ -8,7 +8,7 @@ class LubricantHomeCard(models.Model):
 
     name = fields.Char(string='Titre', required=True)
     description = fields.Char(string='Description')
-    icon = fields.Char(string='Icône (Font Awesome)', default='fa-cube')
+    icon = fields.Char(string='Pictogramme', default='📦')
     circuit = fields.Selection([
         ('purchase', 'Achat'),
         ('sale', 'Vente'),
