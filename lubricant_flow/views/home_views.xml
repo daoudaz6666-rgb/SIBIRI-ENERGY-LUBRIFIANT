@@ -7,17 +7,16 @@
             <kanban create="0" edit="0" delete="0"
                     action="action_open" type="object">
                 <field name="name"/>
-                <field name="description"/>
                 <field name="circuit"/>
                 <field name="icon"/>
                 <templates>
                     <t t-name="card" class="text-center">
-                        <div class="py-5 px-4" style="min-width: 300px; min-height: 240px;">
+                        <div class="py-5 px-4 rounded text-white"
+                             t-att-style="'min-height: 240px; ' + (record.circuit.raw_value === 'purchase' ? 'background-color: #0d6efd;' : 'background-color: #198754;')">
                             <div class="mb-4" style="font-size: 4.5rem; line-height: 1;">
                                 <field name="icon"/>
                             </div>
-                            <h2 class="mb-3"><field name="name"/></h2>
-                            <div class="text-muted"><field name="description"/></div>
+                            <h2 class="text-white mb-0"><field name="name"/></h2>
                         </div>
                     </t>
                 </templates>
