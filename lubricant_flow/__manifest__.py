@@ -13,6 +13,7 @@
         'views/purchase_order_views.xml',
         'views/sale_order_views.xml',
         'views/home_views.xml',
+        'views/menus.xml',
     ],
     'license': 'LGPL-3',
     'installable': True,

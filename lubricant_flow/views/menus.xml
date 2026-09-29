@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Historique : circuits clôturés -->
+    <record id="lubricant_purchase_history_action" model="ir.actions.act_window">
+        <field name="name">Historique des achats de lubrifiants</field>
+        <field name="res_model">purchase.order</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('is_lubricant', '=', True), ('lubricant_closed', '=', True)]</field>
+    </record>
+
+    <record id="lubricant_sale_history_action" model="ir.actions.act_window">
+        <field name="name">Historique des ventes de lubrifiants</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('is_lubricant', '=', True), ('lubricant_closed', '=', True)]</field>
+    </record>
+
+    <!-- Barre de menus -->
+    <menuitem id="menu_lubricant_purchase" name="Achat de lubrifiants"
+              parent="menu_lubricant_root"
+              action="lubricant_need_request_action" sequence="10"/>
+    <menuitem id="menu_lubricant_sale" name="Vente de lubrifiants"
+              parent="menu_lubricant_root"
+              action="lubricant_sale_order_action" sequence="20"/>
+    <menuitem id="menu_lubricant_history" name="Historique"
+              parent="menu_lubricant_root" sequence="30"/>
+    <menuitem id="menu_lubricant_history_purchase" name="Achats"
+              parent="menu_lubricant_history"
+              action="lubricant_purchase_history_action" sequence="10"/>
+    <menuitem id="menu_lubricant_history_sale" name="Ventes"
+              parent="menu_lubricant_history"
+              action="lubricant_sale_history_action" sequence="20"/>
+</odoo>
