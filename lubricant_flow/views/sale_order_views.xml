@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sale_order_form_lubricant" model="ir.ui.view">
+        <field name="name">sale.order.form.lubricant</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="action_request_pickup"
+                        string="Demander le retrait" type="object"
+                        invisible="not is_lubricant or pickup_requested or state != 'sale'"/>
+                <button name="action_lubricant_close"
+                        string="Clôturer le circuit lubrifiants"
+                        type="object" class="btn-primary"
+                        invisible="not is_lubricant or lubricant_closed or state != 'sale'"/>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page string="Lubrifiants" name="lubricant">
+                    <group>
+                        <group>
+                            <field name="is_lubricant" readonly="lubricant_closed"/>
+                            <field name="lubricant_stage" invisible="not is_lubricant"/>
+                            <field name="lubricant_closed" invisible="not is_lubricant"/>
+                        </group>
+                        <group invisible="not is_lubricant">
+                            <field name="pickup_requested"/>
+                            <field name="pickup_date" readonly="lubricant_closed"/>
+                            <field name="carrier_receipt_ref" readonly="lubricant_closed"/>
+                        </group>
+                    </group>
+                    <group string="Reçu transporteur" invisible="not is_lubricant">
+                        <field name="carrier_receipt_ids" widget="many2many_binary"
+                               nolabel="1" readonly="lubricant_closed"/>
+                    </group>
+                    <field name="vat_certificate_ids" invisible="not is_lubricant"
+                           readonly="lubricant_closed">
+                        <list>
+                            <field name="name"/>
+                            <field name="date"/>
+                        </list>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="lubricant_sale_order_action" model="ir.actions.act_window">
+        <field name="name">Ventes de lubrifiants</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('is_lubricant', '=', True)]</field>
+        <field name="context">{'default_is_lubricant': True}</field>
+    </record>
+
+    <menuitem id="menu_lubricant_sale" name="Ventes" parent="menu_lubricant_root" sequence="20"/>
+    <menuitem id="menu_lubricant_sale_orders" name="Cotations et commandes"
+              parent="menu_lubricant_sale"
+              action="lubricant_sale_order_action" sequence="10"/>
+</odoo>

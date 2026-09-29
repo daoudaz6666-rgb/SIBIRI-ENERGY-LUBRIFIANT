@@ -11,6 +11,7 @@
         'views/need_request_views.xml',
         'views/vat_certificate_views.xml',
         'views/purchase_order_views.xml',
+        'views/sale_order_views.xml',
         'views/home_views.xml',
     ],
     'license': 'LGPL-3',

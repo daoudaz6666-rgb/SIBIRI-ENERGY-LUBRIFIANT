@@ -17,14 +17,7 @@ class LubricantHomeCard(models.Model):
 
     def action_open(self):
         self.ensure_one()
-        if self.circuit == 'purchase':
-            return self.env['ir.actions.actions']._for_xml_id(
-                'lubricant_flow.lubricant_need_request_action')
-        # Provisoire : sera remplacé par le circuit vente (étape 3)
-        return {
-            'type': 'ir.actions.act_window',
-            'name': 'Ventes de lubrifiants',
-            'res_model': 'sale.order',
-            'view_mode': 'list,form',
-            'target': 'current',
-        }
+        xml_id = ('lubricant_flow.lubricant_need_request_action'
+                  if self.circuit == 'purchase'
+                  else 'lubricant_flow.lubricant_sale_order_action')
+        return self.env['ir.actions.actions']._for_xml_id(xml_id)
