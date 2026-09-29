@@ -5,7 +5,6 @@
     'summary': "Circuits d'achat et de vente de lubrifiants",
     'depends': ['purchase', 'sale_management', 'stock', 'account'],
     'data': [
-        'security/ir.model.access.csv',
         'data/sequences.xml',
         'views/need_request_views.xml',
     ],
