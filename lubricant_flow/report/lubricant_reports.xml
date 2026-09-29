@@ -6,7 +6,6 @@
         <field name="model">lubricant.need.request</field>
         <field name="report_type">qweb-pdf</field>
         <field name="report_name">lubricant_flow.report_need_request</field>
-        <field name="report_file">lubricant_flow.report_need_request</field>
         <field name="print_report_name">'Fiche de besoin - %s' % (object.name)</field>
         <field name="binding_model_id" ref="model_lubricant_need_request"/>
         <field name="binding_type">report</field>
@@ -68,7 +67,6 @@
         <field name="model">sale.order</field>
         <field name="report_type">qweb-pdf</field>
         <field name="report_name">lubricant_flow.report_lubricant_proforma</field>
-        <field name="report_file">lubricant_flow.report_lubricant_proforma</field>
         <field name="print_report_name">'Proforma - %s' % (object.name)</field>
         <field name="binding_model_id" ref="sale.model_sale_order"/>
         <field name="binding_type">report</field>
