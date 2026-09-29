@@ -8,11 +8,18 @@
                     action="action_open" type="object">
                 <field name="name"/>
                 <field name="description"/>
-                <field name="icon"/>
+                <field name="circuit"/>
                 <templates>
                     <t t-name="card" class="text-center">
                         <div class="py-5 px-4" style="min-width: 300px; min-height: 240px;">
-                            <i t-att-class="'fa fa-5x mb-4 text-primary ' + record.icon.value"/>
+                            <div class="mb-4">
+                                <i t-if="record.circuit.raw_value == 'purchase'"
+                                   class="fa fa-shopping-cart fa-5x text-primary" role="img"
+                                   aria-label="Achat" title="Achat"/>
+                                <i t-if="record.circuit.raw_value == 'sale'"
+                                   class="fa fa-handshake-o fa-5x text-success" role="img"
+                                   aria-label="Vente" title="Vente"/>
+                            </div>
                             <h2 class="mb-3"><field name="name"/></h2>
                             <div class="text-muted"><field name="description"/></div>
                         </div>

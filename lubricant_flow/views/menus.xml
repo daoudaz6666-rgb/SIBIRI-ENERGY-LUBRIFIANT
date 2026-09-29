@@ -30,4 +30,7 @@
     <menuitem id="menu_lubricant_history_sale" name="Ventes"
               parent="menu_lubricant_history"
               action="lubricant_sale_history_action" sequence="20"/>
+    <menuitem id="menu_lubricant_vat_certificate" name="Certificats de TVA"
+              parent="menu_lubricant_root"
+              action="lubricant_vat_certificate_action" sequence="40"/>
 </odoo>
