@@ -10,6 +10,7 @@
         'views/need_request_views.xml',
         'views/vat_certificate_views.xml',
         'views/purchase_order_views.xml',
+        'views/choice_wizard_views.xml',
     ],
     'license': 'LGPL-3',
     'installable': True,

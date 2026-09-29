@@ -5,3 +5,4 @@ access_need_request_line_user,need.request.line.user,lubricant.need.request.line
 access_need_request_line_manager,need.request.line.manager,lubricant.need.request.line,purchase.group_purchase_manager,crud,
 access_vat_certificate_user,vat.certificate.user,lubricant.vat.certificate,base.group_user,crud,
 access_vat_certificate_manager,vat.certificate.manager,lubricant.vat.certificate,purchase.group_purchase_manager,crud,
+access_choice_wizard_user,choice.wizard.user,lubricant.choice.wizard,base.group_user,crud,
