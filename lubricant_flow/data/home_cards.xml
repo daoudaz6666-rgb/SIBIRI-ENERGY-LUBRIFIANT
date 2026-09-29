@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="lubricant_home_card_purchase" model="lubricant.home.card">
+        <field name="name">Achat de lubrifiants</field>
+        <field name="description">Approvisionnement auprès du dépôt : fiches de besoin, demandes de prix, commandes, certificats de TVA</field>
+        <field name="icon">fa-shopping-cart</field>
+        <field name="circuit">purchase</field>
+        <field name="sequence">10</field>
+    </record>
+    <record id="lubricant_home_card_sale" model="lubricant.home.card">
+        <field name="name">Vente de lubrifiants</field>
+        <field name="description">Vente aux clients externes : cotations, proformas, commandes, livraisons, certificats de TVA</field>
+        <field name="icon">fa-tags</field>
+        <field name="circuit">sale</field>
+        <field name="sequence">20</field>
+    </record>
+</odoo>
