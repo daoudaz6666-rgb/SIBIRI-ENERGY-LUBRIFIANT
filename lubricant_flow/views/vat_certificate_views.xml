@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="lubricant_vat_certificate_view_list" model="ir.ui.view">
+        <field name="name">lubricant.vat.certificate.list</field>
+        <field name="model">lubricant.vat.certificate</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="date"/>
+                <field name="purchase_id"/>
+                <field name="sale_id"/>
+                <field name="move_id"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="lubricant_vat_certificate_view_form" model="ir.ui.view">
+        <field name="name">lubricant.vat.certificate.form</field>
+        <field name="model">lubricant.vat.certificate</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" placeholder="Numéro du certificat"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="date"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                        <group>
+                            <field name="purchase_id"/>
+                            <field name="sale_id"/>
+                            <field name="move_id"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Fichiers" name="files">
+                            <field name="attachment_ids" widget="many2many_binary"/>
+                        </page>
+                        <page string="Remarques" name="notes">
+                            <field name="note"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="lubricant_vat_certificate_action" model="ir.actions.act_window">
+        <field name="name">Certificats de TVA</field>
+        <field name="res_model">lubricant.vat.certificate</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_lubricant_vat_certificate" name="Certificats de TVA"
+              parent="menu_lubricant_root"
+              action="lubricant_vat_certificate_action" sequence="30"/>
+</odoo>

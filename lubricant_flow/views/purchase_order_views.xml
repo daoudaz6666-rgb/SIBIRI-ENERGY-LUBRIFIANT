@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="purchase_order_form_lubricant" model="ir.ui.view">
+        <field name="name">purchase.order.form.lubricant</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="action_lubricant_close"
+                        string="Clôturer le circuit lubrifiants"
+                        type="object" class="btn-primary"
+                        invisible="not is_lubricant or lubricant_closed or state != 'purchase'"/>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page string="Lubrifiants" name="lubricant">
+                    <group>
+                        <group>
+                            <field name="is_lubricant" readonly="lubricant_closed"/>
+                            <field name="need_request_id" invisible="not is_lubricant"/>
+                        </group>
+                        <group>
+                            <field name="lubricant_closed" invisible="not is_lubricant"/>
+                        </group>
+                    </group>
+                    <field name="vat_certificate_ids" invisible="not is_lubricant"
+                           readonly="lubricant_closed">
+                        <list>
+                            <field name="name"/>
+                            <field name="date"/>
+                        </list>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
