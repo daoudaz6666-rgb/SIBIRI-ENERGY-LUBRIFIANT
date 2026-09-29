@@ -1,0 +1,5 @@
+id,name,model_id,group_id/id,operation,domain
+access_need_request_user,need.request.user,lubricant.need.request,base.group_user,crud,
+access_need_request_manager,need.request.manager,lubricant.need.request,purchase.group_purchase_manager,crud,
+access_need_request_line_user,need.request.line.user,lubricant.need.request.line,base.group_user,crud,
+access_need_request_line_manager,need.request.line.manager,lubricant.need.request.line,purchase.group_purchase_manager,crud,
