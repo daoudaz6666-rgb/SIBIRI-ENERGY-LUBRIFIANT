@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ===== Types de pièces (configuration) ===== -->
+    <record id="lubricant_import_doc_type_view_list" model="ir.ui.view">
+        <field name="name">lubricant.import.doc.type.list</field>
+        <field name="model">lubricant.import.doc.type</field>
+        <field name="arch" type="xml">
+            <list editable="bottom" default_order="sequence">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="phase"/>
+                <field name="mandatory"/>
+                <field name="issuer"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="lubricant_import_doc_type_action" model="ir.actions.act_window">
+        <field name="name">Types de pièces</field>
+        <field name="res_model">lubricant.import.doc.type</field>
+        <field name="view_mode">list</field>
+    </record>
+
+    <!-- ===== Pièce du dossier (fenêtre de détail) ===== -->
+    <record id="lubricant_import_doc_view_form" model="ir.ui.view">
+        <field name="name">lubricant.import.doc.form</field>
+        <field name="model">lubricant.import.doc</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="type_id"/>
+                            <field name="phase"/>
+                            <field name="mandatory"/>
+                            <field name="original"/>
+                        </group>
+                        <group>
+                            <field name="number"/>
+                            <field name="date"/>
+                            <field name="received"/>
+                        </group>
+                    </group>
+                    <group string="Scan / pièces jointes">
+                        <field name="attachment_ids" widget="many2many_binary" nolabel="1"/>
+                    </group>
+                    <field name="note" placeholder="Remarques"/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- ===== Dossier d'importation ===== -->
+    <record id="lubricant_import_file_view_list" model="ir.ui.view">
+        <field name="name">lubricant.import.file.list</field>
+        <field name="model">lubricant.import.file</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="purchase_id"/>
+                <field name="bl_number"/>
+                <field name="phase" widget="badge"
+                       decoration-info="phase in ('commande', 'autorisations', 'paiement')"
+                       decoration-warning="phase in ('assurance', 'expedition', 'transit', 'douane', 'frais', 'transmission')"
+                       decoration-success="phase == 'closed'"
+                       decoration-danger="phase == 'cancel'"/>
+                <field name="progress" widget="progressbar"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="lubricant_import_file_view_form" model="ir.ui.view">
+        <field name="name">lubricant.import.file.form</field>
+        <field name="model">lubricant.import.file</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_next_phase" string="Phase suivante" type="object"
+                            class="btn-primary"
+                            invisible="phase in ('transmission', 'closed', 'cancel')"/>
+                    <button name="action_close" string="Clôturer le dossier" type="object"
+                            class="btn-primary" invisible="phase != 'transmission'"/>
+                    <button name="action_previous_phase" string="Phase précédente" type="object"
+                            groups="purchase.group_purchase_manager"
+                            invisible="phase in ('commande', 'closed', 'cancel')"/>
+                    <button name="action_sync_docs" string="Ajouter les pièces manquantes"
+                            type="object" invisible="phase in ('closed', 'cancel')"/>
+                    <button name="action_cancel" string="Annuler" type="object"
+                            invisible="phase in ('closed', 'cancel')"/>
+                    <button name="action_reset" string="Remettre en cours" type="object"
+                            invisible="phase != 'cancel'"/>
+                    <field name="phase" widget="statusbar"
+                           statusbar_visible="commande,autorisations,paiement,assurance,expedition,transit,douane,frais,transmission,closed"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <div class="alert alert-warning" role="alert" invisible="not missing_text">
+                        <field name="missing_text"/>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="partner_id" readonly="phase in ('closed', 'cancel')"/>
+                            <field name="purchase_id"
+                                   domain="[('state', 'in', ('purchase', 'done'))]"
+                                   readonly="phase in ('closed', 'cancel')"/>
+                            <field name="incoterm"/>
+                            <field name="amount_total" invisible="not purchase_id"/>
+                            <field name="currency_id" invisible="1"/>
+                        </group>
+                        <group>
+                            <field name="bl_number"/>
+                            <field name="ship_date"/>
+                            <field name="progress" widget="progressbar"/>
+                            <field name="doc_received_count"/>
+                            <field name="doc_required_count"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Pièces" name="docs">
+                            <field name="doc_ids">
+                                <list decoration-success="received"
+                                      decoration-muted="not mandatory and not received">
+                                    <field name="phase" widget="badge"/>
+                                    <field name="type_id"/>
+                                    <field name="number"/>
+                                    <field name="date"/>
+                                    <field name="original"/>
+                                    <field name="mandatory"/>
+                                    <field name="received"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Conteneurs" name="containers">
+                            <field name="container_ids">
+                                <list editable="bottom">
+                                    <field name="name"/>
+                                    <field name="size"/>
+                                    <field name="weight"/>
+                                    <field name="note"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Remarques" name="notes">
+                            <field name="note"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="lubricant_import_file_action" model="ir.actions.act_window">
+        <field name="name">Achat de lubrifiants</field>
+        <field name="res_model">lubricant.import.file</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('phase', 'not in', ('closed', 'cancel'))]</field>
+    </record>
+</odoo>

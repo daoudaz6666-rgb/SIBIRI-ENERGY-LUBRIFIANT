@@ -1,8 +1,9 @@
 id,name,model_id,group_id/id,operation,domain
-access_need_request_user,need.request.user,lubricant.need.request,base.group_user,crud,
-access_need_request_manager,need.request.manager,lubricant.need.request,purchase.group_purchase_manager,crud,
-access_need_request_line_user,need.request.line.user,lubricant.need.request.line,base.group_user,crud,
-access_need_request_line_manager,need.request.line.manager,lubricant.need.request.line,purchase.group_purchase_manager,crud,
+access_import_file_user,import.file.user,lubricant.import.file,purchase.group_purchase_user,crud,
+access_import_doc_user,import.doc.user,lubricant.import.doc,purchase.group_purchase_user,crud,
+access_import_container_user,import.container.user,lubricant.import.container,purchase.group_purchase_user,crud,
+access_import_doc_type_read,import.doc.type.read,lubricant.import.doc.type,base.group_user,r,
+access_import_doc_type_manager,import.doc.type.manager,lubricant.import.doc.type,purchase.group_purchase_manager,crud,
 access_vat_certificate_user,vat.certificate.user,lubricant.vat.certificate,base.group_user,crud,
 access_vat_certificate_manager,vat.certificate.manager,lubricant.vat.certificate,purchase.group_purchase_manager,crud,
 access_home_card_user,home.card.user,lubricant.home.card,base.group_user,r,

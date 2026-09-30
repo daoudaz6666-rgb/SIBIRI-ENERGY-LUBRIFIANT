@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="doctype_01" model="lubricant.import.doc.type">
+        <field name="name">Facture proforma</field>
+        <field name="phase">commande</field>
+        <field name="mandatory" eval="True"/>
+        <field name="issuer">Fournisseur</field>
+        <field name="sequence">10</field>
+    </record>
+    <record id="doctype_02" model="lubricant.import.doc.type">
+        <field name="name">Bon de commande signé</field>
+        <field name="phase">commande</field>
+        <field name="mandatory" eval="True"/>
+        <field name="issuer">Sibiri Energy</field>
+        <field name="sequence">20</field>
+    </record>
+    <record id="doctype_03" model="lubricant.import.doc.type">
+        <field name="name">Facture finale du fournisseur</field>
+        <field name="phase">autorisations</field>
+        <field name="mandatory" eval="True"/>
+        <field name="issuer">Fournisseur</field>
+        <field name="sequence">30</field>
+    </record>
+    <record id="doctype_04" model="lubricant.import.doc.type">
+        <field name="name">Déclaration préalable d'importation (DPI)</field>
+        <field name="phase">autorisations</field>
+        <field name="mandatory" eval="True"/>
+        <field name="issuer">Ministère du Commerce</field>
+        <field name="sequence">40</field>
+    </record>
+    <record id="doctype_05" model="lubricant.import.doc.type">
+        <field name="name">Avis préalable de conformité</field>
+        <field name="phase">autorisations</field>
+        <field name="mandatory" eval="True"/>
+        <field name="issuer">MICA (normalisation)</field>
+        <field name="sequence">50</field>
+    </record>
+    <record id="doctype_06" model="lubricant.import.doc.type">
+        <field name="name">Avis de conformité sur analyse</field>
+        <field name="phase">autorisations</field>
+        <field name="mandatory" eval="True"/>
+        <field name="issuer">MICA (normalisation)</field>
+        <field name="sequence">60</field>
+    </record>
+    <record id="doctype_07" model="lubricant.import.doc.type">
+        <field name="name">Bordereau de transmission pour cosignature</field>
+        <field name="phase">paiement</field>
+        <field name="mandatory" eval="True"/>
+        <field name="issuer">Sibiri Energy</field>
+        <field name="sequence">70</field>
+    </record>
+    <record id="doctype_08" model="lubricant.import.doc.type">
+        <field name="name">Ordre de virement</field>
+        <field name="phase">paiement</field>
+        <field name="mandatory" eval="True"/>
+        <field name="issuer">Banque</field>
+        <field name="sequence">80</field>
+    </record>
+    <record id="doctype_09" model="lubricant.import.doc.type">
+        <field name="name">Formulaire de change</field>
+        <field name="phase">paiement</field>
+        <field name="mandatory" eval="True"/>
+        <field name="issuer">Banque Atlantique</field>
+        <field name="sequence">90</field>
+    </record>
+    <record id="doctype_10" model="lubricant.import.doc.type">
+        <field name="name">Autorisation de change</field>
+        <field name="phase">paiement</field>
+        <field name="mandatory" eval="True"/>
+        <field name="issuer">Banque Atlantique</field>
+        <field name="sequence">100</field>
+    </record>
+    <record id="doctype_11" model="lubricant.import.doc.type">
+        <field name="name">Certificat d'assurance facultés</field>
+        <field name="phase">assurance</field>
+        <field name="mandatory" eval="True"/>
+        <field name="issuer">Assureur</field>
+        <field name="sequence">110</field>
+    </record>
+    <record id="doctype_12" model="lubricant.import.doc.type">
+        <field name="name">Certificat d'origine</field>
+        <field name="phase">expedition</field>
+        <field name="mandatory" eval="True"/>
+        <field name="issuer">Fournisseur</field>
+        <field name="sequence">120</field>
+    </record>
+    <record id="doctype_13" model="lubricant.import.doc.type">
+        <field name="name">Shipping note</field>
+        <field name="phase">expedition</field>
+        <field name="mandatory" eval="False"/>
+        <field name="issuer">Fournisseur</field>
+        <field name="sequence">130</field>
+    </record>
+    <record id="doctype_14" model="lubricant.import.doc.type">
+        <field name="name">Connaissement maritime</field>
+        <field name="phase">expedition</field>
+        <field name="mandatory" eval="True"/>
+        <field name="issuer">Armateur (MSC)</field>
+        <field name="sequence">140</field>
+    </record>
+    <record id="doctype_15" model="lubricant.import.doc.type">
+        <field name="name">Facture du transitaire</field>
+        <field name="phase">transit</field>
+        <field name="mandatory" eval="True"/>
+        <field name="issuer">Transitaire</field>
+        <field name="sequence">150</field>
+    </record>
+    <record id="doctype_16" model="lubricant.import.doc.type">
+        <field name="name">Waybill du terminal de transit</field>
+        <field name="phase">transit</field>
+        <field name="mandatory" eval="True"/>
+        <field name="issuer">Terminal de transit</field>
+        <field name="sequence">160</field>
+    </record>
+    <record id="doctype_17" model="lubricant.import.doc.type">
+        <field name="name">Ordre de transit</field>
+        <field name="phase">transit</field>
+        <field name="mandatory" eval="True"/>
+        <field name="issuer">Transitaire</field>
+        <field name="sequence">170</field>
+    </record>
+    <record id="doctype_18" model="lubricant.import.doc.type">
+        <field name="name">Bordereau électronique de suivi des cargaisons (BESC)</field>
+        <field name="phase">transit</field>
+        <field name="mandatory" eval="True"/>
+        <field name="issuer">Conseil burkinabè des chargeurs</field>
+        <field name="sequence">180</field>
+    </record>
+    <record id="doctype_19" model="lubricant.import.doc.type">
+        <field name="name">Bordereau de suivi du trafic routier</field>
+        <field name="phase">transit</field>
+        <field name="mandatory" eval="True"/>
+        <field name="issuer">Autorité des transports</field>
+        <field name="sequence">190</field>
+    </record>
+    <record id="doctype_20" model="lubricant.import.doc.type">
+        <field name="name">Feuille de suivi</field>
+        <field name="phase">transit</field>
+        <field name="mandatory" eval="False"/>
+        <field name="issuer">Transporteur</field>
+        <field name="sequence">200</field>
+    </record>
+    <record id="doctype_21" model="lubricant.import.doc.type">
+        <field name="name">Dossier de domiciliation bancaire</field>
+        <field name="phase">douane</field>
+        <field name="mandatory" eval="True"/>
+        <field name="issuer">Banque</field>
+        <field name="sequence">210</field>
+    </record>
+    <record id="doctype_22" model="lubricant.import.doc.type">
+        <field name="name">Attestation d'importation</field>
+        <field name="phase">douane</field>
+        <field name="mandatory" eval="True"/>
+        <field name="issuer">Ministère du Commerce</field>
+        <field name="sequence">220</field>
+    </record>
+    <record id="doctype_23" model="lubricant.import.doc.type">
+        <field name="name">Déclaration en douane</field>
+        <field name="phase">douane</field>
+        <field name="mandatory" eval="True"/>
+        <field name="issuer">Douanes du Burkina Faso</field>
+        <field name="sequence">230</field>
+    </record>
+    <record id="doctype_24" model="lubricant.import.doc.type">
+        <field name="name">Quittance de paiement des droits et taxes</field>
+        <field name="phase">douane</field>
+        <field name="mandatory" eval="True"/>
+        <field name="issuer">Douanes</field>
+        <field name="sequence">240</field>
+    </record>
+    <record id="doctype_25" model="lubricant.import.doc.type">
+        <field name="name">Facture et tickets de pesage CCI-BF</field>
+        <field name="phase">frais</field>
+        <field name="mandatory" eval="True"/>
+        <field name="issuer">CCI-BF</field>
+        <field name="sequence">250</field>
+    </record>
+    <record id="doctype_26" model="lubricant.import.doc.type">
+        <field name="name">Facture et reçu de paiement CCI-BF</field>
+        <field name="phase">frais</field>
+        <field name="mandatory" eval="True"/>
+        <field name="issuer">CCI-BF</field>
+        <field name="sequence">260</field>
+    </record>
+    <record id="doctype_27" model="lubricant.import.doc.type">
+        <field name="name">Factures du terminal (TRCB)</field>
+        <field name="phase">frais</field>
+        <field name="mandatory" eval="True"/>
+        <field name="issuer">TRCB</field>
+        <field name="sequence">270</field>
+    </record>
+    <record id="doctype_28" model="lubricant.import.doc.type">
+        <field name="name">Reçu de paiement du terminal (TRCB)</field>
+        <field name="phase">frais</field>
+        <field name="mandatory" eval="True"/>
+        <field name="issuer">TRCB</field>
+        <field name="sequence">280</field>
+    </record>
+    <record id="doctype_29" model="lubricant.import.doc.type">
+        <field name="name">Bordereau de transmission des documents d'importation</field>
+        <field name="phase">transmission</field>
+        <field name="mandatory" eval="True"/>
+        <field name="issuer">Sibiri Energy</field>
+        <field name="sequence">290</field>
+    </record>
+</odoo>

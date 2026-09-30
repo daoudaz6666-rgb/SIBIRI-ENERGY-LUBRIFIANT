@@ -13,9 +13,6 @@ class LubricantVatCertificate(models.Model):
     date = fields.Date(
         string='Date', default=fields.Date.context_today,
         required=True, tracking=True)
-    purchase_id = fields.Many2one(
-        'purchase.order', string='Commande achat',
-        ondelete='restrict', tracking=True)
     sale_id = fields.Many2one(
         'sale.order', string='Commande vente',
         ondelete='restrict', tracking=True)
@@ -28,12 +25,12 @@ class LubricantVatCertificate(models.Model):
         default=lambda self: self.env.company, required=True)
     note = fields.Text(string='Remarques')
 
-    @api.constrains('purchase_id', 'sale_id', 'move_id')
+    @api.constrains('sale_id', 'move_id')
     def _check_origin(self):
         for rec in self:
-            if not (rec.purchase_id or rec.sale_id or rec.move_id):
+            if not (rec.sale_id or rec.move_id):
                 raise ValidationError(_(
-                    "Le certificat doit être rattaché à un achat, une vente ou une facture."))
+                    "Le certificat doit être rattaché à une vente ou à une facture."))
 
     @api.constrains('name', 'company_id')
     def _check_unique_name(self):

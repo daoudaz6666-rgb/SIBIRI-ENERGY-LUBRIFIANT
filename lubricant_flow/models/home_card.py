@@ -17,7 +17,7 @@ class LubricantHomeCard(models.Model):
 
     def action_open(self):
         self.ensure_one()
-        xml_id = ('lubricant_flow.lubricant_need_request_action'
+        xml_id = ('lubricant_flow.lubricant_import_file_action'
                   if self.circuit == 'purchase'
                   else 'lubricant_flow.lubricant_sale_order_action')
         return self.env['ir.actions.actions']._for_xml_id(xml_id)

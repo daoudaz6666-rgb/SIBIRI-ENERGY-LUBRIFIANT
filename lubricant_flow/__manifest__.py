@@ -1,14 +1,15 @@
 {
     'name': 'Lubricant Flow',
-    'version': '20.0.1.0.0',
+    'version': '20.0.2.0.0',
     'category': 'Inventory/Purchase',
-    'summary': "Circuits d'achat et de vente de lubrifiants",
+    'summary': "Importation et vente de lubrifiants",
     'depends': ['purchase', 'sale_management', 'stock', 'account'],
     'data': [
         'security/ir.access.csv',
         'data/sequences.xml',
+        'data/doc_types.xml',
         'data/home_cards.xml',
-        'views/need_request_views.xml',
+        'views/import_views.xml',
         'views/vat_certificate_views.xml',
         'views/purchase_order_views.xml',
         'views/sale_order_views.xml',

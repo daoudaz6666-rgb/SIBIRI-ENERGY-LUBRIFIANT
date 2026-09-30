@@ -6,28 +6,18 @@
         <field name="inherit_id" ref="purchase.purchase_order_form"/>
         <field name="arch" type="xml">
             <xpath expr="//header" position="inside">
-                <button name="action_lubricant_close"
-                        string="Clôturer le circuit lubrifiants"
-                        type="object" class="btn-primary"
-                        invisible="not is_lubricant or lubricant_closed or state != 'purchase'"/>
+                <button name="action_create_import_file"
+                        string="Créer le dossier d'importation"
+                        type="object"
+                        invisible="state not in ('purchase', 'done') or import_file_ids"/>
             </xpath>
             <xpath expr="//notebook" position="inside">
-                <page string="Lubrifiants" name="lubricant">
-                    <group>
-                        <group>
-                            <field name="is_lubricant" readonly="lubricant_closed"/>
-                            <field name="need_request_id" invisible="not is_lubricant"/>
-                        </group>
-                        <group>
-                            <field name="lubricant_closed" invisible="not is_lubricant"/>
-                            <field name="lubricant_stage" invisible="not is_lubricant"/>
-                        </group>
-                    </group>
-                    <field name="vat_certificate_ids" invisible="not is_lubricant"
-                           readonly="lubricant_closed">
+                <page string="Importation" name="lubricant_import">
+                    <field name="import_file_ids" readonly="1">
                         <list>
                             <field name="name"/>
-                            <field name="date"/>
+                            <field name="phase" widget="badge"/>
+                            <field name="progress" widget="progressbar"/>
                         </list>
                     </field>
                 </page>
