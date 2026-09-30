@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ===== Historique des achats ===== -->
+    <record id="lubricant_purchase_history_view_list" model="ir.ui.view">
+        <field name="name">lubricant.purchase.history.list</field>
+        <field name="model">purchase.order</field>
+        <field name="arch" type="xml">
+            <list create="0">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="date_order"/>
+                <field name="amount_total" sum="Total"/>
+                <field name="lubricant_stage" widget="badge"
+                       decoration-info="lubricant_stage in ('rfq', 'ordered')"
+                       decoration-warning="lubricant_stage in ('received', 'invoiced', 'certified')"
+                       decoration-success="lubricant_stage == 'closed'"
+                       decoration-danger="lubricant_stage == 'cancel'"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="lubricant_purchase_history_view_search" model="ir.ui.view">
+        <field name="name">lubricant.purchase.history.search</field>
+        <field name="model">purchase.order</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="partner_id"/>
+                <filter name="in_progress" string="En cours"
+                        domain="[('lubricant_closed', '=', False), ('lubricant_stage', '!=', 'cancel')]"/>
+                <filter name="closed" string="Clôturés"
+                        domain="[('lubricant_closed', '=', True)]"/>
+                <filter name="cancelled" string="Annulés"
+                        domain="[('lubricant_stage', '=', 'cancel')]"/>
+                <group>
+                    <filter name="group_stage" string="Étape"
+                            context="{'group_by': 'lubricant_stage'}"/>
+                    <filter name="group_partner" string="Fournisseur"
+                            context="{'group_by': 'partner_id'}"/>
+                    <filter name="group_month" string="Mois"
+                            context="{'group_by': 'date_order:month'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="lubricant_purchase_history_action" model="ir.actions.act_window">
+        <field name="name">Historique des achats de lubrifiants</field>
+        <field name="res_model">purchase.order</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_id" ref="lubricant_purchase_history_view_list"/>
+        <field name="search_view_id" ref="lubricant_purchase_history_view_search"/>
+        <field name="domain">[('is_lubricant', '=', True)]</field>
+    </record>
+
+    <!-- ===== Historique des ventes ===== -->
+    <record id="lubricant_sale_history_view_list" model="ir.ui.view">
+        <field name="name">lubricant.sale.history.list</field>
+        <field name="model">sale.order</field>
+        <field name="arch" type="xml">
+            <list create="0">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="date_order"/>
+                <field name="pickup_date"/>
+                <field name="amount_total" sum="Total"/>
+                <field name="lubricant_stage" widget="badge"
+                       decoration-info="lubricant_stage in ('quotation', 'order')"
+                       decoration-warning="lubricant_stage in ('pickup', 'invoiced', 'delivered')"
+                       decoration-success="lubricant_stage == 'closed'"
+                       decoration-danger="lubricant_stage == 'cancel'"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="lubricant_sale_history_view_search" model="ir.ui.view">
+        <field name="name">lubricant.sale.history.search</field>
+        <field name="model">sale.order</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="partner_id"/>
+                <filter name="in_progress" string="En cours"
+                        domain="[('lubricant_closed', '=', False), ('lubricant_stage', '!=', 'cancel')]"/>
+                <filter name="closed" string="Clôturées"
+                        domain="[('lubricant_closed', '=', True)]"/>
+                <filter name="cancelled" string="Annulées"
+                        domain="[('lubricant_stage', '=', 'cancel')]"/>
+                <group>
+                    <filter name="group_stage" string="Étape"
+                            context="{'group_by': 'lubricant_stage'}"/>
+                    <filter name="group_partner" string="Client"
+                            context="{'group_by': 'partner_id'}"/>
+                    <filter name="group_month" string="Mois"
+                            context="{'group_by': 'date_order:month'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="lubricant_sale_history_action" model="ir.actions.act_window">
+        <field name="name">Historique des ventes de lubrifiants</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_id" ref="lubricant_sale_history_view_list"/>
+        <field name="search_view_id" ref="lubricant_sale_history_view_search"/>
+        <field name="domain">[('is_lubricant', '=', True)]</field>
+    </record>
+</odoo>

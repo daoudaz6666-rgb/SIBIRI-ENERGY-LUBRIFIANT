@@ -13,6 +13,7 @@
         'views/purchase_order_views.xml',
         'views/sale_order_views.xml',
         'views/home_views.xml',
+        'views/history_views.xml',
         'views/menus.xml',
         'report/lubricant_reports.xml',
     ],

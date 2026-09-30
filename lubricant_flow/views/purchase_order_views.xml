@@ -20,6 +20,7 @@
                         </group>
                         <group>
                             <field name="lubricant_closed" invisible="not is_lubricant"/>
+                            <field name="lubricant_stage" invisible="not is_lubricant"/>
                         </group>
                     </group>
                     <field name="vat_certificate_ids" invisible="not is_lubricant"

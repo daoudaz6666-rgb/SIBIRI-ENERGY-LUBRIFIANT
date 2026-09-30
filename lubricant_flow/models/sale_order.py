@@ -26,14 +26,17 @@ class SaleOrder(models.Model):
         ('invoiced', '5. Facturée'),
         ('delivered', '6. Livrée'),
         ('closed', '7. Clôturée'),
-    ], string='Étape du circuit', compute='_compute_lubricant_stage')
+        ('cancel', 'Annulée'),
+    ], string='Étape du circuit', compute='_compute_lubricant_stage', store=True)
 
     @api.depends('state', 'pickup_requested', 'invoice_status',
                  'carrier_receipt_ids', 'carrier_receipt_ref',
                  'vat_certificate_ids', 'lubricant_closed')
     def _compute_lubricant_stage(self):
         for order in self:
-            if order.lubricant_closed:
+            if order.state == 'cancel':
+                stage = 'cancel'
+            elif order.lubricant_closed:
                 stage = 'closed'
             elif order.carrier_receipt_ids or order.carrier_receipt_ref:
                 stage = 'delivered'
