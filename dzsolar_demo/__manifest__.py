@@ -1,7 +1,7 @@
 {
-    'name': 'DZsolar - Démo e-commerce',
-    'version': '20.0.1.0.0',
-    'summary': "Configure automatiquement la démo DZsolar : société en FCFA, catalogue Felicity Solar, site web, CRM et paiements",
+    'name': 'DZsolar - Configuration',
+    'version': '20.0.1.1.0',
+    'summary': "Configure automatiquement DZsolar : société en FCFA, catalogue Felicity Solar, site web, CRM et paiements",
     'author': 'DZsolar',
     'category': 'Website/eCommerce',
     'depends': [
@@ -17,7 +17,7 @@
         'base_automation',
         'spreadsheet_dashboard',
     ],
-    'data': [],
+    'data': ['views/templates.xml'],
     'post_init_hook': 'post_init_hook',
     'installable': True,
     'application': False,

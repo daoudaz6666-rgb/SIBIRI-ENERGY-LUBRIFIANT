@@ -68,16 +68,17 @@ def post_init_hook(env):
     xof = env.ref('base.XOF')
     xof.active = True
 
-    # 1) Société en FCFA avec plan comptable SYSCOHADA Burkina
-    company = env['res.company'].search([('chart_template', '=', 'bf')], limit=1)
+    # 1) Société DZsolar neuve en FCFA, plan SYSCOHADA Burkina, sans données de démonstration
+    company = env['res.company'].search([('name', '=', NOM)], limit=1)
     if not company:
         company = env['res.company'].create({'name': NOM, 'currency_id': xof.id, 'country_id': env.ref('base.bf').id})
+    if not company.chart_template:
         env['account.chart.template'].with_company(company).try_loading('bf', company=company, install_demo=False)
     logo = _img('logo.png')
-    company.write({'name': NOM, 'street': RUE, 'city': 'Ouagadougou', 'phone': TEL, 'email': EMAIL, 'logo': logo,
+    company.write({'street': RUE, 'city': 'Ouagadougou', 'phone': TEL, 'email': EMAIL, 'logo': logo,
                    'sale_invoice_policy': 'order', 'sale_automatic_invoice': True})
-    admin.write({'company_ids': [(4, company.id)], 'company_id': company.id,
-                 'group_ids': [(4, env.ref('base.group_multi_company').id)]})
+    # L'administrateur ne voit plus que DZsolar (plus de « My Company » ni « BF Company »)
+    admin.write({'company_ids': [(6, 0, company.ids)], 'company_id': company.id})
     env = env(context=dict(env.context, allowed_company_ids=[company.id]))
 
     # 2) Entrepôt
@@ -114,7 +115,14 @@ def post_init_hook(env):
         demo = Provider.search([('code', '=', 'demo'), ('company_id', '=', company.id)], limit=1)
         if not demo:
             demo = env.ref('payment.payment_provider_demo').copy({'company_id': company.id})
-        demo.write({'name': 'Paiement en ligne (Carte / Mobile Money)', 'is_published': True})
+        demo.write({'name': 'Paiement en ligne', 'is_published': True,
+                    'allow_express_checkout': False, 'allow_tokenization': False})
+        with file_open('payment/static/img/card.png', 'rb') as f:
+            card = base64.b64encode(f.read()).decode()
+        method = env.ref('payment_demo.payment_method_demo')
+        for lang in ('en_US', 'fr_FR'):
+            method.with_context(lang=lang).write({'name': 'Carte bancaire / Mobile Money'})
+        method.image = card
     _step(env, "paiements", payments)
 
     # 6) Règle CRM : commande web -> opportunité gagnée
@@ -156,7 +164,12 @@ def post_init_hook(env):
                                                ('default_code', 'not in', codes)]).write({'is_published': False})
     _step(env, "catalogue", produits)
 
-    # 8) Page d'accueil
+    # 8) Archiver les opportunités fictives des autres sociétés
+    def nettoyage():
+        env['crm.lead'].sudo().search([('company_id', '!=', company.id)]).write({'active': False})
+    _step(env, "nettoyage CRM", nettoyage)
+
+    # 9) Page d'accueil
     _step(env, "page d'accueil", lambda: _homepage(env, company, website))
 
 

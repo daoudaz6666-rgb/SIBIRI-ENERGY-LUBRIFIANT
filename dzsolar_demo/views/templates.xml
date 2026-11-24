@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Formulaire de paiement en ligne : libellés neutres, statut simulé masqué -->
+    <template id="payment_details_dzsolar" inherit_id="payment_demo.payment_details" priority="99">
+        <xpath expr="//label[@for='customer_input']/small" position="replace">
+            <small>Numéro de carte bancaire ou de téléphone Mobile Money</small>
+        </xpath>
+        <xpath expr="//input[@id='customer_input']" position="attributes">
+            <attribute name="placeholder">Ex. 4970 1012 3456 7890 ou 70 12 34 56</attribute>
+        </xpath>
+        <xpath expr="//select[@id='simulated_payment_state']/.." position="attributes">
+            <attribute name="class" add="d-none" separator=" "/>
+        </xpath>
+    </template>
+
+    <!-- Pied de page : remplacer « Powered by Odoo » -->
+    <template id="brand_promotion_dzsolar" inherit_id="web.brand_promotion" priority="99">
+        <xpath expr="//div[hasclass('o_brand_promotion')]" position="replace">
+            <div class="o_brand_promotion">© DZsolar - Ouagadougou, Burkina Faso</div>
+        </xpath>
+    </template>
+</odoo>
