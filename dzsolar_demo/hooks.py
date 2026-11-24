@@ -9,7 +9,6 @@ NOM = "DZsolar"
 TEL = "+226 55 21 98 81"
 EMAIL = "contact@dzsolar.bf"
 RUE = "Avenue Kwame Nkrumah"
-WA = "https://wa.me/22655219881?text=Bonjour%20DZsolar%2C%20je%20souhaite%20un%20devis"
 AMBRE = "#F5A623"
 NOIR = "#111111"
 RULE_NAME = "Commande web -> Opportunité gagnée"
@@ -220,8 +219,9 @@ def _homepage(env, company, website):
               <p class="text-uppercase fw-bold mb-2" style="color:{AMBRE};letter-spacing:2px;">Distributeur Felicity Solar à Ouagadougou</p>
               <h1 class="display-4 fw-bold mb-4" style="color:#ffffff;">L'énergie du soleil, <span style="color:{AMBRE};">sans coupure</span>.</h1>
               <p class="lead mb-4" style="color:#dddddd;">Panneaux, onduleurs et batteries lithium pour la maison, le commerce et l'industrie. Livraison rapide à Ouaga et installation par nos techniciens.</p>
-              <a href="/shop" class="btn btn-lg me-2 mb-2" style="background:{AMBRE};color:{NOIR};font-weight:bold;">Voir la boutique</a>
-              <a href="{WA}" target="_blank" class="btn btn-lg btn-outline-light mb-2">Commander sur WhatsApp</a>
+              <a href="/shop" class="btn btn-lg me-2 mb-2" style="background:{AMBRE};color:{NOIR};font-weight:bold;">Acheter en ligne</a>
+              <a href="/shop" class="btn btn-lg btn-outline-light mb-2">Voir le catalogue</a>
+              <p class="mt-3 mb-0" style="color:#bbbbbb;">&#128274; Paiement sécurisé sur le site : carte bancaire ou Mobile Money</p>
             </div>
             <div class="col-lg-5 text-center mt-4 mt-lg-0">
               <img src="/web/image/website/{website.id}/logo" alt="DZsolar" style="max-width:100%;background:#ffffff;border-radius:16px;padding:24px;"/>
@@ -250,7 +250,7 @@ def _homepage(env, company, website):
           <h2 class="mb-4 text-center" style="color:{NOIR};">Pourquoi choisir DZsolar ?</h2>
           <div class="row text-center">
             <div class="col-6 col-lg-3 mb-4"><h1 style="color:{AMBRE};">&#9728;</h1><h5>Matériel certifié</h5><p class="text-muted">Distributeur de la marque Felicity Solar</p></div>
-            <div class="col-6 col-lg-3 mb-4"><h1 style="color:{AMBRE};">&#9889;</h1><h5>Étude gratuite</h5><p class="text-muted">Dimensionnement selon vos besoins</p></div>
+            <div class="col-6 col-lg-3 mb-4"><h1 style="color:{AMBRE};">&#128179;</h1><h5>Paiement en ligne</h5><p class="text-muted">Carte bancaire ou Mobile Money, directement sur le site</p></div>
             <div class="col-6 col-lg-3 mb-4"><h1 style="color:{AMBRE};">&#128666;</h1><h5>Livraison rapide</h5><p class="text-muted">Partout à Ouagadougou</p></div>
             <div class="col-6 col-lg-3 mb-4"><h1 style="color:{AMBRE};">&#128295;</h1><h5>Installation et SAV</h5><p class="text-muted">Techniciens qualifiés et suivi après-vente</p></div>
           </div>
@@ -260,18 +260,17 @@ def _homepage(env, company, website):
         <div class="container">
           <div class="row align-items-center">
             <div class="col-lg-8" style="color:{NOIR};">
-              <h3 class="fw-bold">Besoin d'un devis ? Écrivez-nous sur WhatsApp</h3>
+              <h3 class="fw-bold">Commandez et payez en ligne, nous livrons à Ouaga</h3>
               <p class="mb-1">&#128222; {TEL}</p>
               <p class="mb-1">&#128339; Ouvert du lundi au vendredi, de 8h à 19h</p>
               <p class="mb-0">&#128205; {RUE}, Ouagadougou, Burkina Faso</p>
             </div>
             <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
-              <a href="{WA}" target="_blank" class="btn btn-lg" style="background:{NOIR};color:#ffffff;">Discuter sur WhatsApp</a>
+              <a href="/shop" class="btn btn-lg" style="background:{NOIR};color:#ffffff;">Commander maintenant</a>
             </div>
           </div>
         </div>
       </section>
-      <a href="{WA}" target="_blank" title="WhatsApp" style="position:fixed;right:24px;bottom:24px;z-index:1050;background:#25D366;color:#ffffff;border-radius:50px;padding:14px 22px;font-weight:bold;box-shadow:0 4px 12px rgba(0,0,0,.3);text-decoration:none;">WhatsApp</a>
     </div>
   </t>
 </t>'''

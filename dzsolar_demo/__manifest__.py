@@ -1,6 +1,6 @@
 {
     'name': 'DZsolar - Configuration',
-    'version': '20.0.1.1.0',
+    'version': '20.0.1.2.0',
     'summary': "Configure automatiquement DZsolar : société en FCFA, catalogue Felicity Solar, site web, CRM et paiements",
     'author': 'DZsolar',
     'category': 'Website/eCommerce',
